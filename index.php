@@ -157,11 +157,13 @@
 $(document).ready(function() {
     // Travel time between stations in hours
     var travelTimeBetweenStations = {
-        '1': 2,  // Time to Station 1 (in hours)
-        '2': 2,  // Time to Station 2 (in hours)
-        '3': 2   // Time to Station 3 (in hours)
+        '1_to_2': 30, // Station 1 → Station 2
+        '2_to_3': 30, // Station 2 → Station 3
+        '3_maneuver': 5, // Maneuver at Station 3
+        '3_to_2': 30, // Station 3 → Station 2
+        '2_to_1': 30, // Station 2 → Station 1
+        '1_maneuver': 5 // Maneuver at Station 1
     };
-
     // Waiting time at each station in minutes
     var waitingTimeAtStation = 10; // minutes
 
@@ -190,14 +192,14 @@ $(document).ready(function() {
         var selectedStation = $('#stationSelect').val(); // The station the user is tracking
         var destinationStation = $('#destinationSelect').val(); // The final destination station
         var currentTime = new Date();
-        var lastUpdate = new Date(lastUpdateTime);  
+        var lastUpdate = new Date(lastUpdateTime);
 
         // Prevent calculation if no station is selected
         if (!selectedStation) return "Select a Station";
 
         // Time passed since last update
-        var timeDifferenceInMinutes = (currentTime - lastUpdate) / 1000 / 60;  
-        if (timeDifferenceInMinutes < 1) timeDifferenceInMinutes = 0; 
+        var timeDifferenceInMinutes = (currentTime - lastUpdate) / 1000 / 60;
+        if (timeDifferenceInMinutes < 1) timeDifferenceInMinutes = 0;
 
         var totalTravelTimeInMinutes = 0;
 
@@ -205,29 +207,25 @@ $(document).ready(function() {
         if (direction === 'FORWARD') {
             if (currentStation == 1) {
                 if (selectedStation == 2) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['1_to_2'];
                 } else if (selectedStation == 3) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['1_to_2'] + travelTimeBetweenStations['2_to_3'];
                 }
             } else if (currentStation == 2) {
                 if (selectedStation == 1) {
-                 
-                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2_to_1'] + travelTimeBetweenStations['1_maneuver'] + travelTimeBetweenStations['1_to_2'] + travelTimeBetweenStations['2_to_3'];
                 } else if (selectedStation == 3) {
-                  
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['2'] * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2_to_3'];
                 } else if (selectedStation == 2 && destinationStation == 3) {
-                  
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
-                }  else if (selectedStation == 2 && destinationStation == 1) {
-                 
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] ) * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2_to_3'] + travelTimeBetweenStations['3_maneuver'] + travelTimeBetweenStations['3_to_2'] + travelTimeBetweenStations['2_to_1'] + travelTimeBetweenStations['1_maneuver'] + travelTimeBetweenStations['1_to_2'];
+                } else if (selectedStation == 2 && destinationStation == 1) {
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2_to_1'] + travelTimeBetweenStations['1_maneuver'] + travelTimeBetweenStations['1_to_2'];
                 }
             } else if (currentStation == 3) {
                 if (selectedStation == 1) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] ) * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['3_to_2'] + travelTimeBetweenStations['2_to_1'];
                 } else if (selectedStation == 2) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['3'] * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['3_to_2'];
                 }
             }
         }
@@ -236,31 +234,24 @@ $(document).ready(function() {
         else if (direction === 'BACKWARD') {
             if (currentStation == 3) {
                 if (selectedStation == 2 && destinationStation == 1) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['3'] * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['3_to_2'];
                 } else if (selectedStation == 2 && destinationStation == 3) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']  ) * 60;
-                }
-                else if (selectedStation == 1) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2']) * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['3_to_2'] + travelTimeBetweenStations['2_to_1'] + travelTimeBetweenStations['1_maneuver'] + travelTimeBetweenStations['1_to_2'] + travelTimeBetweenStations['2_to_3'];
+                } else if (selectedStation == 1) {
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['3_to_2'] + travelTimeBetweenStations['2_to_1'];
                 }
             } else if (currentStation == 2) {
                 if (selectedStation == 1) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['2'] * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2_to_1'];
                 } else if (selectedStation == 3) {
-                    // Train must go to 1 first, then to 3
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] ) * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2_to_1'] + travelTimeBetweenStations['1_maneuver'] + travelTimeBetweenStations['1_to_2'] + travelTimeBetweenStations['2_to_3'];
                 } else if (selectedStation == 2 && destinationStation == 3) {
-                    // Train must complete the route 2 → 1 → 2
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3']) * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2_to_1'] + travelTimeBetweenStations['1_maneuver'] + travelTimeBetweenStations['1_to_2'] + travelTimeBetweenStations['2_to_3'];
                 } else if (selectedStation == 2 && destinationStation == 1) {
-                    // Train must complete the route 2 → 1 → 2
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2']) * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2_to_1'] + travelTimeBetweenStations['1_maneuver'] + travelTimeBetweenStations['1_to_2'] + travelTimeBetweenStations['2_to_3'] + travelTimeBetweenStations['3_maneuver'] + travelTimeBetweenStations['3_to_2'];
                 }
             }
         }
-
-        // Add waiting time at each station (10 minutes per stop)
-        totalTravelTimeInMinutes += waitingTimeAtStation * 3; // 3 station stops included
 
         // Subtract elapsed time
         var remainingTimeInMinutes = totalTravelTimeInMinutes - timeDifferenceInMinutes;
@@ -275,13 +266,6 @@ $(document).ready(function() {
 
         return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
     }
-
-
-
-
-
-
-
 
     // Fetch data every second
     setInterval(fetchTrainStatus, 1000);
