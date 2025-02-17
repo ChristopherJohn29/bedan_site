@@ -213,9 +213,7 @@ $(document).ready(function() {
             if (currentStation == 1) {
                 if (selectedStation == 2) {
                     if(destinationStation == 1){
-                        console.log('testing');
                         totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
-                        console.log(totalTravelTimeInMinutes);
                     } else {
                         totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
                     }
@@ -223,7 +221,7 @@ $(document).ready(function() {
                 } else if (selectedStation == 3) {
                     totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
                 } else {
-                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
+                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
                 }
             } else if (currentStation == 2) {
                 if (selectedStation == 1) {
@@ -243,7 +241,13 @@ $(document).ready(function() {
                 if (selectedStation == 1) {
                     totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] ) * 60;
                 } else if (selectedStation == 2) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['3'] * 60;
+                    if(destinationStation == 3){
+                        totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3']) * 60;
+                    } else {
+                        totalTravelTimeInMinutes = travelTimeBetweenStations['3'] * 60;
+                    }
+                } else {
+                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3']) * 60;
                 }
             }
         }
