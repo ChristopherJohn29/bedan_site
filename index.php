@@ -266,8 +266,15 @@ $(document).ready(function() {
         var remainingTimeInMinutes = totalTravelTimeInMinutes - timeDifferenceInMinutes;
         if (remainingTimeInMinutes < 0) remainingTimeInMinutes = 0;
 
-        // Show "Arrived!" only if the remaining time is less than 10 minutes
-        if (remainingTimeInMinutes <= 10) return "Arrived!";
+        // Show "Arrived!" only if the remaining time is less than 0 minutes
+        if (remainingTimeInMinutes <= 0 && stationSelect != currentStation) {
+            return "Problem Occured!";
+
+        }
+
+        if(remainingTimeInMinutes <= 0 && stationSelect == currentStation){
+            return "Arrived";
+        }
 
         var hoursLeft = Math.floor(remainingTimeInMinutes / 60);
         var minutesLeft = Math.floor(remainingTimeInMinutes % 60);
