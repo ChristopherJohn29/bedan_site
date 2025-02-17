@@ -215,6 +215,8 @@ $(document).ready(function() {
                     totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
                 } else if (selectedStation == 3) {
                     totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
+                } else {
+                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
                 }
             } else if (currentStation == 2) {
                 if (selectedStation == 1) {
@@ -267,7 +269,7 @@ $(document).ready(function() {
         }
 
         // Add waiting time at each station (10 minutes per stop)
-        totalTravelTimeInMinutes += waitingTimeAtStation * 3; // 3 station stops included
+        // totalTravelTimeInMinutes += waitingTimeAtStation * 3; // 3 station stops included
 
         // Subtract elapsed time
         var remainingTimeInMinutes = totalTravelTimeInMinutes - timeDifferenceInMinutes;
