@@ -202,11 +202,11 @@ $(document).ready(function() {
 
         var totalTravelTimeInMinutes = 0;
 
-        if(timeDifferenceInMinutes == 0 && currentStation == selectedStation){
-            return 'Arrived';
-        } else if(timeDifferenceInMinutes == 0 && currentStation != selectedStation){
-            return 'Problem Occured';
-        } 
+        // if(timeDifferenceInMinutes == 0 && currentStation == selectedStation){
+        //     return 'Arrived';
+        // } else if(timeDifferenceInMinutes == 0 && currentStation != selectedStation){
+        //     return 'Problem Occured';
+        // } 
 
         // FORWARD Direction: 1 → 2 → 3 → 2 → 1
         if (direction === 'FORWARD') {
@@ -279,7 +279,7 @@ $(document).ready(function() {
             return "Problem Occured!";
 
         }
-        
+
         if(remainingTimeInMinutes <= 10 && selectedStation == currentStation){
             return "Arrived";
         }
