@@ -215,6 +215,7 @@ $(document).ready(function() {
                     if(destinationStation == 1){
                         console.log('testing');
                         totalTravelTimeInMinutes = travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] * 60;
+                        console.log(totalTravelTimeInMinutes);
                     } else {
                         totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
                     }
