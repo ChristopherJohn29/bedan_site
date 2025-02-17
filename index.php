@@ -276,6 +276,8 @@ $(document).ready(function() {
             return "Arrived";
         }
 
+        console.log(remainingTimeInMinutes);
+
         var hoursLeft = Math.floor(remainingTimeInMinutes / 60);
         var minutesLeft = Math.floor(remainingTimeInMinutes % 60);
         var secondsLeft = Math.floor((remainingTimeInMinutes - hoursLeft * 60 - minutesLeft) * 60);
