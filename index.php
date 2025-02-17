@@ -212,7 +212,12 @@ $(document).ready(function() {
         if (direction === 'FORWARD') {
             if (currentStation == 1) {
                 if (selectedStation == 2) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
+                    if(destinationStation == 1){
+                        totalTravelTimeInMinutes = travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] * 60;
+                    } else {
+                        totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
+                    }
+                    
                 } else if (selectedStation == 3) {
                     totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
                 } else {
