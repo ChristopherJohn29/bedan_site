@@ -267,7 +267,7 @@ $(document).ready(function() {
         }
 
         // Add waiting time at each station (10 minutes per stop)
-        // totalTravelTimeInMinutes += waitingTimeAtStation * 3; // 3 station stops included
+        totalTravelTimeInMinutes += waitingTimeAtStation * 3; // 3 station stops included
 
         // Subtract elapsed time
         var remainingTimeInMinutes = totalTravelTimeInMinutes - timeDifferenceInMinutes;
