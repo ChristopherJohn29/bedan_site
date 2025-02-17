@@ -224,6 +224,11 @@
 
         var totalTravelTimeInMinutes = 0;
 
+
+        if (direction === 'MANEUVERING') {
+            // Display a simple message (or customize as needed)
+            return "Train is currently maneuvering at Station " + currentStation;
+        }
         // -----------------------------
         // FORWARD direction logic
         // Route cycle: 1 -> 2 -> 3 -> 2 -> 1 -> ...
