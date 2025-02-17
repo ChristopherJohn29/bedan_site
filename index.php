@@ -280,11 +280,10 @@ $(document).ready(function() {
 
         }
         
-        console.log(remainingTimeInMinutes);
         if(remainingTimeInMinutes <= 10 && selectedStation == currentStation){
-
-            console.log(timeDifferenceInMinutes);
-            return "Arrived";
+           if(timeDifferenceInMinutes <= 10){
+                return "Arrived";
+           }
         }
 
 
