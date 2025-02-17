@@ -213,7 +213,7 @@ $(document).ready(function() {
             if (currentStation == 1) {
                 if (selectedStation == 2) {
                     if(destinationStation == 1){
-                        totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
+                        totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2']) * 60;
                     } else {
                         totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
                     }
@@ -242,7 +242,7 @@ $(document).ready(function() {
                     totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] ) * 60;
                 } else if (selectedStation == 2) {
                     if(destinationStation == 3){
-                        totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3']) * 60;
+                        totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
                     } else {
                         totalTravelTimeInMinutes = travelTimeBetweenStations['3'] * 60;
                     }
@@ -256,25 +256,27 @@ $(document).ready(function() {
         else if (direction === 'BACKWARD') {
             if (currentStation == 3) {
                 if (selectedStation == 2 && destinationStation == 1) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['3'] * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['2'] * 60;
                 } else if (selectedStation == 2 && destinationStation == 3) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']  ) * 60;
+                    totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']  ) * 60;
                 }
                 else if (selectedStation == 1) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2']) * 60;
+                    totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
+                } else {
+                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3']) * 60;
                 }
             } else if (currentStation == 2) {
                 if (selectedStation == 1) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['2'] * 60;
+                    totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
                 } else if (selectedStation == 3) {
                     // Train must go to 1 first, then to 3
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] ) * 60;
+                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] ) * 60;
                 } else if (selectedStation == 2 && destinationStation == 3) {
                     // Train must complete the route 2 → 1 → 2
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3']) * 60;
+                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
                 } else if (selectedStation == 2 && destinationStation == 1) {
                     // Train must complete the route 2 → 1 → 2
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2']) * 60;
+                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1']) * 60;
                 }
             }
         }
