@@ -198,7 +198,6 @@ $(document).ready(function() {
         // Time passed since last update
         var timeDifferenceInMinutes = (currentTime - lastUpdate) / 1000 / 60;  
 
-        console.log(timeDifferenceInMinutes);
         if (timeDifferenceInMinutes < 1) timeDifferenceInMinutes = 0; 
 
         var totalTravelTimeInMinutes = 0;
@@ -281,11 +280,13 @@ $(document).ready(function() {
 
         }
 
+        
+        console.log(remainingTimeInMinutes);
+
         if(remainingTimeInMinutes <= 0 && selectedStation == currentStation){
             return "Arriveds";
         }
 
-        console.log(remainingTimeInMinutes);
 
         var hoursLeft = Math.floor(remainingTimeInMinutes / 60);
         var minutesLeft = Math.floor(remainingTimeInMinutes % 60);
