@@ -275,16 +275,13 @@ $(document).ready(function() {
 
         // Show "Arrived!" only if the remaining time is less than 0 minutes
 
-        if (remainingTimeInMinutes <= 0 && selectedStation != currentStation) {
+        if (remainingTimeInMinutes <= 10 && selectedStation != currentStation) {
             return "Problem Occured!";
 
         }
-
         
-        console.log(remainingTimeInMinutes);
-
-        if(remainingTimeInMinutes <= 0 && selectedStation == currentStation){
-            return "Arriveds";
+        if(remainingTimeInMinutes <= 10 && selectedStation == currentStation){
+            return "Arrived";
         }
 
 
