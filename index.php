@@ -231,8 +231,15 @@
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'];
                     } else if (selectedStation == 2 && destinationStation == 3) {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
+                        
+                        if(timeDifferenceInSeconds < 6){
+                            return "Arrived";
+                        }
+
                     }  else if (selectedStation == 2 && destinationStation == 1) {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'];
+
+                        
                     }
                 }
             }
@@ -280,7 +287,7 @@
             } else {
                 return (secondsLeft + 3) + " sec";
             }
-            
+
             return display;
             
         }
