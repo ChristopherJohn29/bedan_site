@@ -87,11 +87,10 @@
         transform: translate(-50%, -50%);
         z-index: 1000;
         }
-        #popupImage img {
-        max-width: 200px; /* Desktop size */
-        width: 100%;
+    #popupImage img {
+        width: clamp(150px, 50vw, 300px);
         height: auto;
-        }
+    }
 
     /* Responsive adjustments for mobile devices */
     @media (max-width: 576px) {
@@ -109,9 +108,6 @@
         font-size: 0.9rem;
       }
 
-      #popupImage img {
-        max-width: 150px; /* Adjust popup size for mobile */
-      }
       .container {
         padding: 10px; /* Reduce container padding on mobile */
       }
