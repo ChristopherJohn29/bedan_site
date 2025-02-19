@@ -196,6 +196,9 @@
 
             // Time passed since last update (in seconds)
             var timeDifferenceInSeconds = (currentTime - lastUpdate) / 1000;  
+
+            console.log(timeDifferenceInSeconds);
+            
             if (timeDifferenceInSeconds < 1) timeDifferenceInSeconds = 0; 
 
             var totalTravelTimeInSeconds = 0;
