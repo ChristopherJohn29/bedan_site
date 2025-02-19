@@ -1,150 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Train Tracker</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            color: #4e0261;
-        }
-        .header {
-            background-color: #4e0261;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-        .train-image {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .train-image img {
-            max-width: 100%;
-            height: auto;
-        }
-        .arrival-info {
-            background-color: #4e0261;
-            color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            padding: 20px;
-            margin: 20px;
-            border: 3px solid #fff;
-        }
-        .arrival-info p {
-            margin: 0;
-            font-size: 1rem;
-        }
-        .arrival-info h2 {
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
-        .arrival-info h3 {
-            font-size: 2.5rem;
-            margin: 10px 0;
-            color: #f97316;
-        }
-        .arrival-info .clock-icon {
-            color: #f97316;
-            font-size: 36px;
-        }
-        .footer {
-            text-align: center;
-            padding: 10px;
-            font-size: 14px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Train Tracker</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      color: #4e0261;
+    }
+    .header {
+      background-color: #4e0261;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    .header img {
+      max-width: 100%;
+      height: auto;
+    }
+    .train-image {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .train-image img {
+      max-width: 100%;
+      height: auto;
+    }
+    .arrival-info {
+      background-color: #4e0261;
+      color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 20px;
+      margin: 20px;
+      border: 3px solid #fff;
+    }
+    .arrival-info p {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .arrival-info h2 {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+    .arrival-info h3 {
+      font-size: 2.5rem;
+      margin: 10px 0;
+      color: #f97316;
+    }
+    .arrival-info .clock-icon {
+      color: #f97316;
+      font-size: 36px;
+    }
+    .footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+    /* Responsive adjustments for mobile devices */
+    @media (max-width: 576px) {
+      .arrival-info {
+        padding: 10px;
+        margin: 10px;
+      }
+      .arrival-info h2 {
+        font-size: 1.2rem;
+      }
+      .arrival-info h3 {
+        font-size: 2rem;
+      }
+      .header {
+        padding: 5px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="header">
-      <img src="/HEADER.png" alt="Train illustration" style="max-width: 100vh;">
+  <div class="header">
+    <img src="/HEADER.png" alt="Train illustration" class="img-fluid" />
+  </div>
 
+  <div class="train-image">
+    <!-- Optionally, add a train image here -->
+  </div>
+
+  <div class="container">
+    <div class="mb-3">
+      <label for="stationSelect" class="form-label">Origin Station</label>
+      <select class="form-select" id="stationSelect">
+        <option value="1">Station 1</option>
+        <option value="2">Station 2</option>
+        <option value="3">Station 3</option>
+      </select>
     </div>
 
-    <div class="train-image">
-        
+    <div class="mb-3">
+      <label for="destinationSelect" class="form-label">Destination Station</label>
+      <select class="form-select" id="destinationSelect">
+        <option value="1">Station 1</option>
+        <option value="2" selected>Station 2</option>
+        <option value="3">Station 3</option>
+      </select>
     </div>
 
-    <div class="container">
-        <div class="mb-3">
-            <label for="stationSelect" class="form-label">Origin Station</label>
-            <select class="form-select" id="stationSelect">
-                <option value="1">Station 1</option>
-                <option value="2">Station 2</option>
-                <option value="3">Station 3</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label for="destinationSelect" class="form-label">Destination Station</label>
-            <select class="form-select" id="destinationSelect">
-                <option value="1">Station 1</option>
-                <option value="2" selected>Station 2</option>
-                <option value="3">Station 3</option>
-            </select>
-        </div>
-
-        <div class="arrival-info">
-            <p>Here is the Train's Estimated Time of Arrival</p>
-            <h2>Arriving at <strong id="stationName">Station 1</strong></h2>
-            <div class="d-flex justify-content-center align-items-center">
-                <span class="clock-icon me-2">&#128337;</span>
-                <h3>Approximately <strong id="eta">Loading...</strong></h3>
-            </div>
-        </div>
-
-        <p><strong>Current Station:</strong> <span id="currentStation">Loading...</span></p>
-        <p><strong>Direction:</strong> <span id="direction">Loading...</span></p>
-        <p><strong>Last Update Time:</strong> <span id="lastUpdateTime">Loading...</span></p>
-        <p>Current Time: <span id="currentTime">Loading...</span></p>
+    <div class="arrival-info">
+      <p>Here is the Train's Estimated Time of Arrival</p>
+      <h2>Arriving at <strong id="stationName">Station 1</strong></h2>
+      <div class="d-flex justify-content-center align-items-center">
+        <span class="clock-icon me-2">&#128337;</span>
+        <h3>
+          Approximately <strong id="eta">Loading...</strong>
+        </h3>
+      </div>
     </div>
 
-    <div class="footer">
-        <a href="#">Got a Problem? Click Here</a>
-        <p>BedanTracks&copy;</p>
-    </div>
+    <p>
+      <strong>Current Station:</strong>
+      <span id="currentStation">Loading...</span>
+    </p>
+    <p>
+      <strong>Direction:</strong>
+      <span id="direction">Loading...</span>
+    </p>
+    <p>
+      <strong>Last Update Time:</strong>
+      <span id="lastUpdateTime">Loading...</span>
+    </p>
+    <p>
+      Current Time: <span id="currentTime">Loading...</span>
+    </p>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
+  <div class="footer">
+    <a href="#">Got a Problem? Click Here</a>
+    <p>BedanTracks&copy;</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <script>
      $(document).ready(function() {
-    function updateDestinationOptions() {
-        var origin = $('#stationSelect').val();
-        var destination = $('#destinationSelect').val();
+        function updateDestinationOptions() {
+            var origin = $('#stationSelect').val();
+            var destination = $('#destinationSelect').val();
 
-        const stationNames = {
-            '1': 'Station 1',
-            '2': 'Station 2',
-            '3': 'Station 3'
-        };
-        $('#stationName').text(stationNames[origin]);
+            const stationNames = {
+                '1': 'Station 1',
+                '2': 'Station 2',
+                '3': 'Station 3'
+            };
+            $('#stationName').text(stationNames[origin]);
 
-        $('#destinationSelect option').prop('disabled', false); // Enable all options first
+            $('#destinationSelect option').prop('disabled', false); // Enable all options first
 
-        if (origin) {
-            $('#destinationSelect option[value="' + origin + '"]').prop('disabled', true); // Disable selected origin
+            if (origin) {
+                $('#destinationSelect option[value="' + origin + '"]').prop('disabled', true); // Disable selected origin
 
-            // If the current destination is the same as the origin, change it to a different station
-            if (origin === destination) {
-                var newDestination = $('#destinationSelect option:not(:disabled)').first().val();
-                $('#destinationSelect').val(newDestination);
+                // If the current destination is the same as the origin, change it to a different station
+                if (origin === destination) {
+                    var newDestination = $('#destinationSelect option:not(:disabled)').first().val();
+                    $('#destinationSelect').val(newDestination);
+                }
             }
         }
-    }
 
-    // Run function when origin changes
-    $('#stationSelect').change(function() {
+        // Run function when origin changes
+        $('#stationSelect').change(function() {
+            updateDestinationOptions();
+        });
+
+        // Run function when page loads to ensure correct state
         updateDestinationOptions();
     });
-
-    // Run function when page loads to ensure correct state
-    updateDestinationOptions();
-});
-
-
 
     </script>
 
@@ -327,9 +361,6 @@
         // Update current time every second
         setInterval(updateCurrentTime, 1000);
     });
-
-
-
 
     </script>
 </body>
