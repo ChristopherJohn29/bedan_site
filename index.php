@@ -249,8 +249,6 @@
                 if (currentStation == 3) {
                     if (selectedStation == 2 && destinationStation == 1) {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'];
-
-                        
                     } else if (selectedStation == 2 && destinationStation == 3) {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                     }
@@ -258,6 +256,9 @@
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'];
                     } else {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'];
+                        if(timeDifferenceInSeconds < 5){
+                            return "Arrived";
+                        }
                     }
                 } else if (currentStation == 2) {
                     if (selectedStation == 1) {
@@ -269,13 +270,12 @@
                         // Train must complete the route 2 → 1 → 2
                         totalTravelTimeInSeconds = travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
 
-                        if(timeDifferenceInSeconds < 5){
-                            return "Arrived";
-                        }
-                        
                     } else if (selectedStation == 2 && destinationStation == 1) {
                         // Train must complete the route 2 → 1 → 2
                         totalTravelTimeInSeconds = travelTimeBetweenStations['1'];
+                        if(timeDifferenceInSeconds < 5){
+                            return "Arrived";
+                        }
                     }
                 }
             }
