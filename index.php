@@ -203,21 +203,7 @@
                 return "Problem occured";
             }
 
-            console.log(currentStation);
-
-            if(currentStation == 1){
-                var remainingTimeInSeconds = totalTravelTimeInSeconds - timeDifferenceInSeconds;
-
-                return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
-            } else if ( currentStation == 2){
-
-                
-                return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
-            } else if (currentStation == 3){
-                return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
-            }
-
-
+   
             var totalTravelTimeInSeconds = 0;
 
             // FORWARD Direction: 1 → 2 → 3 → 2 → 1
