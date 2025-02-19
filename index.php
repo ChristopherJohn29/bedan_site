@@ -159,7 +159,7 @@
         <i class="bi bi-clock-fill me-1"></i>
         <span class="info-subtitle">Approximately at</span>
         <br />
-        <span class="eta" id="eta">Loading...</span>
+        <span class="eta" id="eta_destination">Loading...</span>
       </h3>
     </div>
 
@@ -241,11 +241,25 @@ $(document).ready(function() {
                // Calculate ETA based on selected station and current data
                var eta = calculateCountdown(data.last_update_time, data.current_station, data.direction);
 
+               var selectedStation = parseInt($('#stationSelect').val(), 10);
+               var destinationStation = parseInt($('#destinationSelect').val(), 10);
+               
+               var difference = Math.abs(selectedStation - destinationStation);
+
                if(calculateCountdown == 'Problem occured'){
                    // popup the image
                } else {
                    //hide the popup
+                   
                    $('#eta').text(eta);
+
+                   if(eta !== 'Arrived' && eta !== 'Arriving'){
+                        // If eta is a string like "30 sec", parseInt will extract the numeric part.
+                        var etaSeconds = typeof eta === 'string' ? parseInt(eta, 10) : eta;
+                        eta_destination = etaSeconds + (difference * 10);
+                    }
+                    
+                   $('#eta_destination').text(eta_destination);
                }
 
             
