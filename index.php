@@ -111,12 +111,13 @@
 
     <div class="arrival-info">
       <p>Here is the Train's Estimated Time of Arrival</p>
-      <h2>Arriving at <strong id="stationName">Legarda</strong></h2>
+      <h2 style="front-style:italic; color:#f1916e;">Arriving at <strong id="stationName" style="front-style:italic; color:white">Legarda</strong></h2>
       <div class="d-flex justify-content-center align-items-center">
         <span class="clock-icon me-2">&#128337;</span>
-        <h3>
-          Approximately <strong id="eta">Loading...</strong>
-        </h3>
+        <label style="front-style:italic; color:#f1916e;">
+          Approximately at <br>
+          <strong id="eta" style="front-style:italic; color:##c83803;">Loading...</strong>
+        </label>
       </div>
     </div>
 
