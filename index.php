@@ -198,8 +198,11 @@
             var timeDifferenceInSeconds = (currentTime - lastUpdate) / 1000;  
 
             console.log(timeDifferenceInSeconds);
-            
-            if (timeDifferenceInSeconds < 1) timeDifferenceInSeconds = 0; 
+
+            if(timeDifferenceInSeconds > 11){
+                console.log('problem_occured');
+            }
+
 
             var totalTravelTimeInSeconds = 0;
 
