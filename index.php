@@ -60,17 +60,10 @@
 </head>
 <body>
     <div class="header">
-      <img src="/HEADER.png" alt="Train illustration">
-        <div class="d-flex justify-content-between align-items-center">
-            <button class="btn btn-light btn-sm">&#8592;</button>
-            <button class="btn btn-light btn-sm">&#8594;</button>
-        </div>
+      <img src="/HEADER.png" alt="Train illustration" style="max-width: 100vh;">
+
     </div>
 
-    <div class="train-image">
-        <p><strong></strong></p>
-        <img src="/HEADER.png" alt="Train illustration">
-    </div>
 
     <div class="container">
         <div class="mb-3">
