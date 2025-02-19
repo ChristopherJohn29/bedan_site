@@ -100,6 +100,15 @@
       padding: 10px;
       font-size: 14px;
     }
+
+    #popupImage {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
@@ -252,6 +261,7 @@ $(document).ready(function() {
                } else {
                    //hide the popup
                    $('#popupImage').hide();
+
                    $('#eta').text(eta);
 
                    if(eta !== 'Arrived' && eta !== 'Arriving' && eta !== 'Problem occured'){
@@ -309,7 +319,7 @@ $(document).ready(function() {
                    totalTravelTimeInSeconds = travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                } else {
                    totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'];
-                   if(timeDifferenceInSeconds < 5){
+                   if(timeDifferenceInSeconds < 4){
                        return "Arrived";
                    }
 
@@ -322,7 +332,7 @@ $(document).ready(function() {
                } else if (selectedStation == 2 && destinationStation == 3) {
                    totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                    
-                   if(timeDifferenceInSeconds < 5){
+                   if(timeDifferenceInSeconds < 4){
                        return "Arrived";
                    }
 
@@ -346,7 +356,7 @@ $(document).ready(function() {
                    totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'];
                } else {
                    totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'];
-                   if(timeDifferenceInSeconds < 5){
+                   if(timeDifferenceInSeconds < 4){
                        return "Arrived";
                    }
                }
@@ -363,7 +373,7 @@ $(document).ready(function() {
                } else if (selectedStation == 2 && destinationStation == 1) {
                    // Train must complete the route 2 → 1 → 2
                    totalTravelTimeInSeconds = travelTimeBetweenStations['1'];
-                   if(timeDifferenceInSeconds < 5){
+                   if(timeDifferenceInSeconds < 4){
                        return "Arrived";
                    }
                }
