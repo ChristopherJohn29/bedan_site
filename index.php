@@ -199,7 +199,7 @@
 
             console.log(timeDifferenceInSeconds);
 
-            if(timeDifferenceInSeconds > 11){
+            if(timeDifferenceInSeconds > 13){
                 return "Problem occured";
             }
 
@@ -271,7 +271,7 @@
 
             var secondsLeft = Math.floor(remainingTimeInSeconds % 60);
 
-            return  secondsLeft + " sec";
+            return  Math.floor(secondsLeft - 3) + " sec";
         }
 
         // Fetch data every second
