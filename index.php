@@ -200,7 +200,21 @@
             console.log(timeDifferenceInSeconds);
 
             if(timeDifferenceInSeconds > 11){
-                console.log('problem_occured');
+                return "Problem occured";
+            }
+
+            console.log(currentStation);
+
+            if(currentStation == 1){
+                var remainingTimeInSeconds = totalTravelTimeInSeconds - timeDifferenceInSeconds;
+
+                return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
+            } else if ( currentStation == 2){
+
+                
+                return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
+            } else if (currentStation == 3){
+                return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
             }
 
 
@@ -279,26 +293,11 @@
 
             // Subtract elapsed time
             var remainingTimeInSeconds = totalTravelTimeInSeconds - timeDifferenceInSeconds;
-            if (remainingTimeInSeconds < 0) remainingTimeInSeconds = 0;
+    
 
-            // Show "Problem Occured!" if the remaining time is very low and the train is not at the selected station
-            if (remainingTimeInSeconds <= 10 && selectedStation != currentStation) {
-                return "Problem Occured!";
-            }
-            
-            // Show "Arrived" if the train is at the selected station and almost done
-            if (remainingTimeInSeconds <= 10 && selectedStation == currentStation) {
-                if (timeDifferenceInSeconds <= 10) {
-                    return "Arrived";
-                }
-            }
-
-            // Convert seconds into hrs, min, sec format
-            var hoursLeft = Math.floor(remainingTimeInSeconds / 3600);
-            var minutesLeft = Math.floor((remainingTimeInSeconds % 3600) / 60);
             var secondsLeft = Math.floor(remainingTimeInSeconds % 60);
 
-            return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
+            return  secondsLeft + " sec";
         }
 
         // Fetch data every second
