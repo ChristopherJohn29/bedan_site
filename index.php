@@ -271,7 +271,7 @@
 
             var secondsLeft = Math.floor(remainingTimeInSeconds % 60);
 
-            return  (secondsLeft - 3) + " sec";
+            return secondsLeft + " sec";
         }
 
         // Fetch data every second
