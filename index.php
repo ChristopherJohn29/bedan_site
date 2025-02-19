@@ -82,13 +82,13 @@
      #popupImage {
         display: none;
         position: fixed;
-        top: 50%;
+        top: 30%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1000;
         }
     #popupImage img {
-        width: clamp(150px, 50vw, 300px);
+        width: clamp(164px, 130vw, 600px);
         height: auto;
     }
 
