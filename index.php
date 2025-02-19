@@ -153,193 +153,173 @@
     </script>
 
     <script>
+    $(document).ready(function() {
+        // Travel time between stations in seconds
+        var travelTimeBetweenStations = {
+            '1': 10,  // Time to Station 1 (in seconds)
+            '2': 10,  // Time to Station 2 (in seconds)
+            '3': 10   // Time to Station 3 (in seconds)
+        };
 
-$(document).ready(function() {
-    // Travel time between stations in hours
-    var travelTimeBetweenStations = {
-        '1': 2,  // Time to Station 1 (in hours)
-        '2': 2,  // Time to Station 2 (in hours)
-        '3': 2   // Time to Station 3 (in hours)
-    };
+        // Waiting time at each station in seconds (if needed)
+        var waitingTimeAtStation = 10; // seconds
 
-    // Waiting time at each station in minutes
-    var waitingTimeAtStation = 10; // minutes
+        function fetchTrainStatus() {
+            $.ajax({
+                url: 'getCurrentStation.php',  // PHP file to fetch data from the database
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // Update the UI with the fetched data
+                    $('#currentStation').text(data.current_station);
+                    $('#direction').text(data.direction);
+                    $('#lastUpdateTime').text(data.last_update_time);
 
-    function fetchTrainStatus() {
-        $.ajax({
-            url: 'getCurrentStation.php',  // PHP file to fetch data from the database
-            method: 'GET',
-            dataType: 'json',
-            success: function(data) {
-                // Update the UI with the fetched data
-                $('#currentStation').text(data.current_station);
-                $('#direction').text(data.direction);
-                $('#lastUpdateTime').text(data.last_update_time);
+                    // Calculate ETA based on selected station and current data
+                    var eta = calculateCountdown(data.last_update_time, data.current_station, data.direction);
+                    $('#eta').text(eta);
+                },
+                error: function() {
+                    console.log('Error fetching data');
+                }
+            });
+        }
 
-                // Calculate ETA based on selected station and current data
-                var eta = calculateCountdown(data.last_update_time, data.current_station, data.direction);
-                $('#eta').text(eta);
-            },
-            error: function() {
-                console.log('Error fetching data');
-            }
-        });
-    }
+        function calculateCountdown(lastUpdateTime, currentStation, direction) {
+            var selectedStation = $('#stationSelect').val(); // The station the user is tracking
+            var destinationStation = $('#destinationSelect').val(); // The final destination station
+            var currentTime = new Date();
+            var lastUpdate = new Date(lastUpdateTime);  
 
-    function calculateCountdown(lastUpdateTime, currentStation, direction) {
-        var selectedStation = $('#stationSelect').val(); // The station the user is tracking
-        var destinationStation = $('#destinationSelect').val(); // The final destination station
-        var currentTime = new Date();
-        var lastUpdate = new Date(lastUpdateTime);  
+            // Prevent calculation if no station is selected
+            if (!selectedStation) return "Select a Station";
 
-        // Prevent calculation if no station is selected
-        if (!selectedStation) return "Select a Station";
+            // Time passed since last update (in seconds)
+            var timeDifferenceInSeconds = (currentTime - lastUpdate) / 1000;  
+            if (timeDifferenceInSeconds < 1) timeDifferenceInSeconds = 0; 
 
-        // Time passed since last update
-        var timeDifferenceInMinutes = (currentTime - lastUpdate) / 1000 / 60;  
+            var totalTravelTimeInSeconds = 0;
 
-        if (timeDifferenceInMinutes < 1) timeDifferenceInMinutes = 0; 
-
-        var totalTravelTimeInMinutes = 0;
-
-        // if(timeDifferenceInMinutes == 0 && currentStation == selectedStation){
-        //     return 'Arrived';
-        // } else if(timeDifferenceInMinutes == 0 && currentStation != selectedStation){
-        //     return 'Problem Occured';
-        // } 
-
-        // FORWARD Direction: 1 → 2 → 3 → 2 → 1
-        if (direction === 'FORWARD') {
-            if (currentStation == 1) {
-                if (selectedStation == 2) {
-                    if(destinationStation == 1){
-                        totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2']) * 60;
+            // FORWARD Direction: 1 → 2 → 3 → 2 → 1
+            if (direction === 'FORWARD') {
+                if (currentStation == 1) {
+                    if (selectedStation == 2) {
+                        if(destinationStation == 1){
+                            totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'];
+                        } else {
+                            totalTravelTimeInSeconds = travelTimeBetweenStations['1'];
+                        }
+                    } else if (selectedStation == 3) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                     } else {
-                        totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'];
                     }
-                    
-                } else if (selectedStation == 3) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
-                } else {
-                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
-                }
-            } else if (currentStation == 2) {
-                if (selectedStation == 1) {
-                 
-                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
-                } else if (selectedStation == 3) {
-                  
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['2'] * 60;
-                } else if (selectedStation == 2 && destinationStation == 3) {
-                  
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
-                }  else if (selectedStation == 2 && destinationStation == 1) {
-                 
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] ) * 60;
-                }
-            } else if (currentStation == 3) {
-                if (selectedStation == 1) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] ) * 60;
-                } else if (selectedStation == 2) {
-                    if(destinationStation == 3){
-                        totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
+                } else if (currentStation == 2) {
+                    if (selectedStation == 1) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'];
+                    } else if (selectedStation == 3) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['2'];
+                    } else if (selectedStation == 2 && destinationStation == 3) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
+                    }  else if (selectedStation == 2 && destinationStation == 1) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'];
+                    }
+                } else if (currentStation == 3) {
+                    if (selectedStation == 1) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'];
+                    } else if (selectedStation == 2) {
+                        if(destinationStation == 3){
+                            totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
+                        } else {
+                            totalTravelTimeInSeconds = travelTimeBetweenStations['3'];
+                        }
                     } else {
-                        totalTravelTimeInMinutes = travelTimeBetweenStations['3'] * 60;
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'];
                     }
-                } else {
-                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3']) * 60;
                 }
             }
-        }
 
-        // BACKWARD Direction: 1 → 2 → 3 → 2 → 1
-        else if (direction === 'BACKWARD') {
-            if (currentStation == 3) {
-                if (selectedStation == 2 && destinationStation == 1) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['2'] * 60;
-                } else if (selectedStation == 2 && destinationStation == 3) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']  ) * 60;
-                }
-                else if (selectedStation == 1) {
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['2'] + travelTimeBetweenStations['1']) * 60;
-                } else {
-                    totalTravelTimeInMinutes = ( travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3']) * 60;
-                }
-            } else if (currentStation == 2) {
-                if (selectedStation == 1) {
-                    totalTravelTimeInMinutes = travelTimeBetweenStations['1'] * 60;
-                } else if (selectedStation == 3) {
-                    // Train must go to 1 first, then to 3
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] ) * 60;
-                } else if (selectedStation == 2 && destinationStation == 3) {
-                    // Train must complete the route 2 → 1 → 2
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1'] + travelTimeBetweenStations['2']) * 60;
-                } else if (selectedStation == 2 && destinationStation == 1) {
-                    // Train must complete the route 2 → 1 → 2
-                    totalTravelTimeInMinutes = (travelTimeBetweenStations['1']) * 60;
+            // BACKWARD Direction: 1 → 2 → 3 → 2 → 1
+            else if (direction === 'BACKWARD') {
+                if (currentStation == 3) {
+                    if (selectedStation == 2 && destinationStation == 1) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['2'];
+                    } else if (selectedStation == 2 && destinationStation == 3) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
+                    }
+                    else if (selectedStation == 1) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'];
+                    } else {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'];
+                    }
+                } else if (currentStation == 2) {
+                    if (selectedStation == 1) {
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['1'];
+                    } else if (selectedStation == 3) {
+                        // Train must go to 1 first, then to 3
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'];
+                    } else if (selectedStation == 2 && destinationStation == 3) {
+                        // Train must complete the route 2 → 1 → 2
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
+                    } else if (selectedStation == 2 && destinationStation == 1) {
+                        // Train must complete the route 2 → 1 → 2
+                        totalTravelTimeInSeconds = travelTimeBetweenStations['1'];
+                    }
                 }
             }
+
+            // (Optional) Add waiting time at each station if needed
+            // totalTravelTimeInSeconds += waitingTimeAtStation * numberOfStops;
+
+            // Subtract elapsed time
+            var remainingTimeInSeconds = totalTravelTimeInSeconds - timeDifferenceInSeconds;
+            if (remainingTimeInSeconds < 0) remainingTimeInSeconds = 0;
+
+            // Show "Problem Occured!" if the remaining time is very low and the train is not at the selected station
+            if (remainingTimeInSeconds <= 10 && selectedStation != currentStation) {
+                return "Problem Occured!";
+            }
+            
+            // Show "Arrived" if the train is at the selected station and almost done
+            if (remainingTimeInSeconds <= 10 && selectedStation == currentStation) {
+                if (timeDifferenceInSeconds <= 10) {
+                    return "Arrived";
+                }
+            }
+
+            // Convert seconds into hrs, min, sec format
+            var hoursLeft = Math.floor(remainingTimeInSeconds / 3600);
+            var minutesLeft = Math.floor((remainingTimeInSeconds % 3600) / 60);
+            var secondsLeft = Math.floor(remainingTimeInSeconds % 60);
+
+            return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
         }
 
-        // Add waiting time at each station (10 minutes per stop)
-        // totalTravelTimeInMinutes += waitingTimeAtStation * 3; // 3 station stops included
+        // Fetch data every second
+        setInterval(fetchTrainStatus, 1000);
 
-        // Subtract elapsed time
-        var remainingTimeInMinutes = totalTravelTimeInMinutes - timeDifferenceInMinutes;
-        if (remainingTimeInMinutes < 0) remainingTimeInMinutes = 0;
+        function getCurrentTime() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = (now.getMonth() + 1).toString().padStart(2, '0');
+            var day = now.getDate().toString().padStart(2, '0');
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
 
-        // Show "Arrived!" only if the remaining time is less than 0 minutes
-
-        if (remainingTimeInMinutes <= 10 && selectedStation != currentStation) {
-            return "Problem Occured!";
-
-        }
-        
-        if(remainingTimeInMinutes <= 10 && selectedStation == currentStation){
-           if(timeDifferenceInMinutes <= 10){
-                return "Arrived";
-           }
+            var formattedTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+            return formattedTime;
         }
 
+        function updateCurrentTime() {
+            var currentTime = getCurrentTime();
+            $('#currentTime').text(currentTime);
+        }
 
-        var hoursLeft = Math.floor(remainingTimeInMinutes / 60);
-        var minutesLeft = Math.floor(remainingTimeInMinutes % 60);
-        var secondsLeft = Math.floor((remainingTimeInMinutes - hoursLeft * 60 - minutesLeft) * 60);
+        // Update current time every second
+        setInterval(updateCurrentTime, 1000);
+    });
 
-        return hoursLeft + " hrs " + minutesLeft + " min " + secondsLeft + " sec";
-    }
-
-
-
-
-
-
-
-
-    // Fetch data every second
-    setInterval(fetchTrainStatus, 1000);
-
-    function getCurrentTime() {
-        var now = new Date();
-        var year = now.getFullYear();
-        var month = (now.getMonth() + 1).toString().padStart(2, '0');
-        var day = now.getDate().toString().padStart(2, '0');
-        var hours = now.getHours().toString().padStart(2, '0');
-        var minutes = now.getMinutes().toString().padStart(2, '0');
-        var seconds = now.getSeconds().toString().padStart(2, '0');
-
-        var formattedTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
-        return formattedTime;
-    }
-
-    function updateCurrentTime() {
-        var currentTime = getCurrentTime();
-        $('#currentTime').text(currentTime);
-    }
-
-    // Update current time every second
-    setInterval(updateCurrentTime, 1000);
-});
 
 
 
