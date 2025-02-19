@@ -60,7 +60,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>BedanTracks</h1>
+      <img src="/HEADER.png" alt="Train illustration">
         <div class="d-flex justify-content-between align-items-center">
             <button class="btn btn-light btn-sm">&#8592;</button>
             <button class="btn btn-light btn-sm">&#8594;</button>
@@ -69,7 +69,7 @@
 
     <div class="train-image">
         <p><strong></strong></p>
-        <img src="https://via.placeholder.com/150x50" alt="Train illustration">
+        <img src="/HEADER.png" alt="Train illustration">
     </div>
 
     <div class="container">
@@ -177,7 +177,15 @@
 
                     // Calculate ETA based on selected station and current data
                     var eta = calculateCountdown(data.last_update_time, data.current_station, data.direction);
-                    $('#eta').text(eta);
+
+                    if(calculateCountdown == 'Problem occured'){
+                        // popup the image
+                    } else {
+                        //hide the popup
+                        $('#eta').text(eta);
+                    }
+
+                 
                 },
                 error: function() {
                     console.log('Error fetching data');
