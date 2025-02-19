@@ -219,7 +219,7 @@
                         totalTravelTimeInSeconds = travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                     } else {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'];
-                        if(timeDifferenceInSeconds < 6){
+                        if(timeDifferenceInSeconds < 5){
                             return "Arrived";
                         }
 
@@ -232,7 +232,7 @@
                     } else if (selectedStation == 2 && destinationStation == 3) {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                         
-                        if(timeDifferenceInSeconds < 6){
+                        if(timeDifferenceInSeconds < 5){
                             return "Arrived";
                         }
 
@@ -249,6 +249,8 @@
                 if (currentStation == 3) {
                     if (selectedStation == 2 && destinationStation == 1) {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'];
+
+                        
                     } else if (selectedStation == 2 && destinationStation == 3) {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                     }
@@ -266,6 +268,11 @@
                     } else if (selectedStation == 2 && destinationStation == 3) {
                         // Train must complete the route 2 → 1 → 2
                         totalTravelTimeInSeconds = travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
+
+                        if(timeDifferenceInSeconds < 5){
+                            return "Arrived";
+                        }
+                        
                     } else if (selectedStation == 2 && destinationStation == 1) {
                         // Train must complete the route 2 → 1 → 2
                         totalTravelTimeInSeconds = travelTimeBetweenStations['1'];
