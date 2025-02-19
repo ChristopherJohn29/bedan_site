@@ -64,6 +64,9 @@
 
     </div>
 
+    <div class="train-image">
+        
+    </div>
 
     <div class="container">
         <div class="mb-3">
