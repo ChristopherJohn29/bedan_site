@@ -78,6 +78,21 @@
       color: #f1916e;
     }
 
+        /* Popup image styling */
+     #popupImage {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        }
+        #popupImage img {
+        max-width: 200px; /* Desktop size */
+        width: 100%;
+        height: auto;
+        }
+
     /* Responsive adjustments for mobile devices */
     @media (max-width: 576px) {
       .arrival-info {
@@ -93,6 +108,13 @@
       .arrival-info p {
         font-size: 0.9rem;
       }
+
+      #popupImage img {
+        max-width: 150px; /* Adjust popup size for mobile */
+      }
+      .container {
+        padding: 10px; /* Reduce container padding on mobile */
+      }
     }
 
     .footer {
@@ -101,14 +123,6 @@
       font-size: 14px;
     }
 
-    #popupImage {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1000;
-    }
   </style>
 </head>
 <body>
