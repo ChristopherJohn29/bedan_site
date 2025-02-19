@@ -258,6 +258,8 @@ $(document).ready(function() {
                if(calculateCountdown == 'Problem occured'){
                    // popup the image
                    $('#popupImage').fadeIn();
+
+                   alert('test');
                } else {
                    //hide the popup
                    $('#popupImage').hide();
