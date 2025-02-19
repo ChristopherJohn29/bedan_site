@@ -199,7 +199,7 @@
 
             console.log(timeDifferenceInSeconds);
 
-            if(timeDifferenceInSeconds > 13){
+            if(timeDifferenceInSeconds > 15){
                 return "Problem occured";
             }
 
@@ -219,6 +219,10 @@
                         totalTravelTimeInSeconds = travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                     } else {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'];
+                        if(timeDifferenceInSeconds < 6){
+                            return "Arrived";
+                        }
+
                     }
                 } else if (currentStation == 2) {
                     if (selectedStation == 1) {
@@ -270,8 +274,15 @@
     
 
             var secondsLeft = Math.floor(remainingTimeInSeconds % 60);
-
-            return (secondsLeft + 3) + " sec";
+            
+            if((secondsLeft + 3) < 0){
+                display = "Arriving";
+            } else {
+                return (secondsLeft + 3) + " sec";
+            }
+            
+            return display;
+            
         }
 
         // Fetch data every second
