@@ -111,13 +111,13 @@
 
     <div class="arrival-info">
       <p>Here is the Train's Estimated Time of Arrival</p>
-      <h2 style="front-style:italic; color:#f1916e;">Arriving at <strong id="stationName" style="front-style:italic; color:white">Legarda</strong></h2>
+      <h2 style="color:#f1916e; font-size: 17px; font-style: italic; display: inline-grid;">Arriving at <strong id="stationName" style="color:white; font-size: 29px;">Legarda station</strong></h2>
       <div class="d-flex justify-content-center align-items-center">
         <span class="clock-icon me-2">&#128337;</span>
-        <label style="front-style:italic; color:#f1916e;">
+        <h2 style="color:#f1916e;font-size: 13px;font-style: italic;display: inline-grid;">
           Approximately at <br>
-          <strong id="eta" style="front-style:italic; color:##c83803;">Loading...</strong>
-        </label>
+          <strong id="eta" style="color:#f1916e;font-size: 24px;font-style: italic;display: inline-grid;">Loading...</strong>
+        </h2>
       </div>
     </div>
 
@@ -157,7 +157,7 @@
                 '2': 'Pureza',
                 '3': 'Recto'
             };
-            $('#stationName').text(stationNames[origin]);
+            $('#stationName').text(stationNames[origin]+ " station");
 
             $('#destinationSelect option').prop('disabled', false); // Enable all options first
 
