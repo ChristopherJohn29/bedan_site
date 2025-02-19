@@ -94,24 +94,24 @@
     <div class="mb-3">
       <label for="stationSelect" class="form-label">Origin Station</label>
       <select class="form-select" id="stationSelect">
-        <option value="1">Station 1</option>
-        <option value="2">Station 2</option>
-        <option value="3">Station 3</option>
+        <option value="1">Legarda</option>
+        <option value="2">Pureza</option>
+        <option value="3">Recto</option>
       </select>
     </div>
 
     <div class="mb-3">
       <label for="destinationSelect" class="form-label">Destination Station</label>
       <select class="form-select" id="destinationSelect">
-        <option value="1">Station 1</option>
-        <option value="2" selected>Station 2</option>
-        <option value="3">Station 3</option>
+        <option value="1">Legarda</option>
+        <option value="2" selected>Pureza</option>
+        <option value="3">Recto</option>
       </select>
     </div>
 
     <div class="arrival-info">
       <p>Here is the Train's Estimated Time of Arrival</p>
-      <h2>Arriving at <strong id="stationName">Station 1</strong></h2>
+      <h2>Arriving at <strong id="stationName">Legarda</strong></h2>
       <div class="d-flex justify-content-center align-items-center">
         <span class="clock-icon me-2">&#128337;</span>
         <h3>
@@ -152,9 +152,9 @@
             var destination = $('#destinationSelect').val();
 
             const stationNames = {
-                '1': 'Station 1',
-                '2': 'Station 2',
-                '3': 'Station 3'
+                '1': 'Legarda',
+                '2': 'Pureza',
+                '3': 'Recto'
             };
             $('#stationName').text(stationNames[origin]);
 
