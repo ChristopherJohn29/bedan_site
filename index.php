@@ -253,13 +253,17 @@ $(document).ready(function() {
                    
                    $('#eta').text(eta);
 
-                   if(eta !== 'Arrived' && eta !== 'Arriving'){
+                   if(eta !== 'Arrived' && eta !== 'Arriving' && eta !== 'Problem occured'){
                         // If eta is a string like "30 sec", parseInt will extract the numeric part.
                         var etaSeconds = typeof eta === 'string' ? parseInt(eta, 10) : eta;
                         eta_destination = etaSeconds + (difference * 10);
+
+                        $('#eta_destination').text(eta_destination + " sec");
+                    }  else {
+                        $('#eta_destination').text("Loading");
                     }
-                    
-                   $('#eta_destination').text(eta_destination);
+
+                   
                }
 
             
