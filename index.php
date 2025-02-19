@@ -135,7 +135,7 @@
 
     <!-- Arrival Info Card -->
     <div class="arrival-info">
-      <p>Here is the Train's Estimated Time of Arrival on Origin</p>
+      <p>Estimated Time of Arrival on Origin</p>
       <h2 class="station">
         <!-- Location Pin icon from Bootstrap Icons (optional) -->
         <i class="bi bi-geo-alt-fill me-1"></i>
@@ -153,7 +153,7 @@
     <!-- Additional Info -->
 
     <div class="arrival-info">
-      <p>Here is the Train's Estimated Time of Arrival on Destination</p>
+      <p>Estimated Time of Arrival on Destination</p>
       <h3>
         <!-- Clock icon from Bootstrap Icons (optional) -->
         <i class="bi bi-clock-fill me-1"></i>
