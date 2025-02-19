@@ -255,11 +255,10 @@ $(document).ready(function() {
                
                var difference = Math.abs(selectedStation - destinationStation);
 
-               if(calculateCountdown == 'Problem occured'){
+               if(eta == 'Problem occured'){
                    // popup the image
                    $('#popupImage').fadeIn();
 
-                   alert('test');
                } else {
                    //hide the popup
                    $('#popupImage').hide();
