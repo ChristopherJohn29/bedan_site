@@ -88,7 +88,7 @@
         z-index: 1000;
         }
     #popupImage img {
-        width: clamp(164px, 130vw, 600px);
+        width: clamp(185px, 170vw, 673px);
         height: auto;
     }
 
@@ -128,7 +128,7 @@
   </div>
 
   <!-- Optional Train Image -->
-  <div id="popupImage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+  <div id="popupImage" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
     <img src="/BT_NOTIF.png" alt="Error Popup" />
   </div>
 
