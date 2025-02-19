@@ -109,8 +109,8 @@
   </div>
 
   <!-- Optional Train Image -->
-  <div class="train-image">
-    <!-- <img src="/train.png" alt="Train" /> -->
+  <div id="popupImage" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+    <img src="/BT_NOTIF.png" alt="Error Popup" />
   </div>
 
   <div class="container">
@@ -248,9 +248,10 @@ $(document).ready(function() {
 
                if(calculateCountdown == 'Problem occured'){
                    // popup the image
+                   $('#popupImage').fadeIn();
                } else {
                    //hide the popup
-                   
+                   $('#popupImage').hide();
                    $('#eta').text(eta);
 
                    if(eta !== 'Arrived' && eta !== 'Arriving' && eta !== 'Problem occured'){
