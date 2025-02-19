@@ -206,7 +206,7 @@
    
             var totalTravelTimeInSeconds = 0;
 
-            // FORWARD Direction: 1 → 2 → 3 → 2 → 1
+   
             if (direction === 'FORWARD') {
                 if (currentStation == 1) {
                     if (selectedStation == 2) {
@@ -229,18 +229,6 @@
                         totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
                     }  else if (selectedStation == 2 && destinationStation == 1) {
                         totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'];
-                    }
-                } else if (currentStation == 3) {
-                    if (selectedStation == 1) {
-                        totalTravelTimeInSeconds = travelTimeBetweenStations['3'] + travelTimeBetweenStations['2'];
-                    } else if (selectedStation == 2) {
-                        if(destinationStation == 3){
-                            totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'];
-                        } else {
-                            totalTravelTimeInSeconds = travelTimeBetweenStations['3'];
-                        }
-                    } else {
-                        totalTravelTimeInSeconds = travelTimeBetweenStations['2'] + travelTimeBetweenStations['1'] + travelTimeBetweenStations['2'] + travelTimeBetweenStations['3'];
                     }
                 }
             }
