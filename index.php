@@ -6,12 +6,12 @@
   <title>Train Tracker</title>
   
   <link
-    href="css/bootstrap.min.css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
   <link 
     rel="stylesheet" 
-    href="css/bootstrap-icons.css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
   />
   
   <style>
@@ -190,10 +190,10 @@
 
   <!-- Bootstrap JS (Optional) -->
   <script
-    src="js/bootstrap.bundle.min.js"
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
   ></script>
   <!-- jQuery (if needed) -->
-  <script src="js/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
   <script>
 $(document).ready(function() {
