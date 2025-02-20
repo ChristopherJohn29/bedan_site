@@ -1,14 +1,12 @@
 <?php
-// Define the command that uniquely identifies your script.
-$scriptName = "/home/admin/app.py";
+$scriptPath = "/home/admin/app.py";
+$pattern = "python $scriptPath";
 
-// Check if the process is already running using pgrep.
-exec("pgrep -f $scriptName", $output);
+// Using quotes around the pattern helps avoid unwanted shell expansions.
+exec("pgrep -f '$pattern'", $output);
 
-// If no matching process is found, start the Python script.
-if(empty($output)) {
-    // nohup allows the process to keep running after the PHP script finishes.
-    exec("nohup python $scriptName > /dev/null 2>&1 &");
+if (empty($output)) {
+    exec("sudo nohup python $scriptPath > /dev/null 2>&1 &");
     echo "Python script started.";
 } else {
     echo "Python script is already running.";
