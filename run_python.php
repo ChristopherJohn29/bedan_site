@@ -1,5 +1,5 @@
 <?php
-$scriptPath = "/home/admin/bedan/app.py";
+$scriptPath = "/home/admin/bedan/app_train_tracker.py";
 $python = "/usr/bin/python3";  // Use the correct absolute path
 $pattern = "$python $scriptPath";
 
