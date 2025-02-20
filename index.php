@@ -234,6 +234,18 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
+
+  $.ajax({
+    url: 'run_python.php',
+    method: 'GET',
+    success: function(response) {
+      console.log(response); // Will log "Python script started." or "Python script is already running."
+    },
+    error: function(xhr, status, error) {
+      console.error("Error: " + error);
+    }
+  });
+
    // Travel time between stations in seconds
    var travelTimeBetweenStations = {
        '1': 10,  // Time to Station 1 (in seconds)
@@ -427,6 +439,8 @@ $(document).ready(function() {
    // Update current time every second
    setInterval(updateCurrentTime, 1000);
 });
+
+
 
 </script>
 </body>
