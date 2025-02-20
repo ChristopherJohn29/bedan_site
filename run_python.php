@@ -1,13 +1,21 @@
 <?php
 $scriptPath = "/home/admin/app.py";
 $pattern = "python " . $scriptPath;
+exec("pgrep -fx \"$pattern\"", $pids);
 
-// Use double quotes to ensure the pattern is treated as a single argument.
-exec("pgrep -f \"$pattern\"", $output);
+$running = false;
+if (!empty($pids)) {
+    foreach ($pids as $pid) {
+        exec("ps -p $pid --no-headers", $psOutput);
+        if (!empty($psOutput)) {
+            // Found a valid running process.
+            $running = true;
+            break;
+        }
+    }
+}
 
-var_dump($output);
-
-if (empty($output)) {
+if (!$running) {
     exec("sudo nohup python $scriptPath > /dev/null 2>&1 &");
     echo "Python script started.";
 } else {
