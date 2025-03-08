@@ -120,6 +120,18 @@
       font-size: 14px;
     }
 
+    .gif-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Full height */
+    }
+
+    img {
+      max-width: 80%;
+      height: auto;
+    }
+
   </style>
 </head>
 <body>
@@ -132,7 +144,9 @@
   <div id="popupImage" style="display: none; position: fixed; top: 45%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
     <img src="/BT_NOTIF.png" alt="Error Popup" />
   </div>
-  <img src="/tren.gif" alt="Moving GIF" />
+  <div class="gif-container">
+    <img src="/tren.gif" alt="Moving GIF" />
+  </div>
 
   <div class="container">
     <!-- Station Selections -->
