@@ -148,6 +148,9 @@
   <div class="gif-container">
     <img class="tren" src="/image.png" alt="Moving GIF" />
   </div>
+  <div class="gif-container">
+    <a href="/main.php"><img class="tren" src="/image2.png" alt="Moving GIF" /></a>
+  </div>
 
 
 
