@@ -120,17 +120,19 @@
       font-size: 14px;
     }
 
-    .gif-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    .gif-container-wrapper {
+  display: flex;
+  flex-direction: column; /* Stacks items vertically */
+  align-items: center; /* Centers images */
+  gap: 0; /* Ensures no space between images */
+  width: 100%; /* Makes sure the container takes full width */
+}
 
-    img.tren {
-      max-width: 100%;
-      height: auto;
-    }
-
+.gif-container img {
+  max-width: 100%; /* Ensures image resizes to fit screen */
+  height: auto; /* Maintains aspect ratio */
+  display: block;
+}
     
 
   </style>
@@ -145,11 +147,13 @@
   <div id="popupImage" style="display: none; position: fixed; top: 45%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
     <img src="/BT_NOTIF.png" alt="Error Popup" />
   </div>
-  <div class="gif-container">
-    <img class="tren" src="/image.png" alt="Moving GIF" />
-  </div>
-  <div class="gif-container">
-    <a href="/main.php"><img class="tren" src="/image2.png" alt="Moving GIF" /></a>
+  <div class="gif-container-wrapper">
+      <div class="gif-container">
+          <img class="tren" src="/image.png" alt="Moving GIF" />
+      </div>
+      <div class="gif-container">
+          <a href="/main.php"><img class="tren" src="/image2.png" alt="Moving GIF" /></a>
+      </div>
   </div>
 
 
