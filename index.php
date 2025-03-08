@@ -13,11 +13,14 @@
     rel="stylesheet" 
     href="css/bootstrap-icons.css"
   />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
+
     body {
       background-color: #f8f9fa;
       color: #4e0261;
+      font-family: 'Poppins', sans-serif;
     }
 
     .header {
@@ -135,8 +138,8 @@
     <div class="mb-3">
       <label for="stationSelect" class="form-label">Origin Station</label>
       <select class="form-select" id="stationSelect">
-        <option value="1">Legarda</option>
-        <option value="2">Pureza</option>
+        <option value="1">Pureza</option>
+        <option value="2">Legarda</option>
         <option value="3">Recto</option>
       </select>
     </div>
@@ -144,8 +147,8 @@
     <div class="mb-3">
       <label for="destinationSelect" class="form-label">Destination Station</label>
       <select class="form-select" id="destinationSelect">
-        <option value="1">Legarda</option>
-        <option value="2" selected>Pureza</option>
+        <option value="1">Pureza</option>
+        <option value="2" selected>Legarda</option>
         <option value="3">Recto</option>
       </select>
     </div>
@@ -202,8 +205,8 @@ $(document).ready(function() {
        var destination = $('#destinationSelect').val();
 
        const stationNames = {
-           '1': 'Legarda',
-           '2': 'Pureza',
+           '1': 'Pureza',
+           '2': 'Legarda',
            '3': 'Recto'
        };
        $('#stationName').text(stationNames[origin]+ " station");
@@ -239,13 +242,13 @@ $(document).ready(function() {
 
    // Travel time between stations in seconds
    var travelTimeBetweenStations = {
-       '1': 10,  // Time to Station 1 (in seconds)
-       '2': 10,  // Time to Station 2 (in seconds)
-       '3': 10   // Time to Station 3 (in seconds)
+       '1': 8,  // Time to Station 1 (in seconds)
+       '2': 8,  // Time to Station 2 (in seconds)
+       '3': 8   // Time to Station 3 (in seconds)
    };
 
    // Waiting time at each station in seconds (if needed)
-   var waitingTimeAtStation = 10; // seconds
+   var waitingTimeAtStation = 8; // seconds
 
    function fetchTrainStatus() {
        $.ajax({
