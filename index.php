@@ -131,6 +131,8 @@
       height: auto;
     }
 
+    
+
   </style>
 </head>
 <body>
@@ -201,9 +203,27 @@
 
   <!-- Footer -->
   <div class="footer">
-    <a href="#">Got a Problem? Click Here</a>
+    <a href="#" class="text-warning fw-bold" data-bs-toggle="modal" data-bs-target="#problemModal">Got a Problem? Click Here</a>
     <p>BedanTracks&copy;</p>
   </div>
+
+  <div class="modal fade" id="problemModal" tabindex="-1" aria-labelledby="problemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="problemModalLabel">Report a Problem</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Please describe the issue below:</p>
+                    <textarea class="form-control" rows="4" placeholder="Type your problem here..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
   <!-- Bootstrap JS (Optional) -->
   <script
