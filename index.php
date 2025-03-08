@@ -146,6 +146,7 @@
     <img src="/BT_NOTIF.png" alt="Error Popup" />
   </div>
   <div class="gif-container">
+    <img class="tren" src="/image.png" alt="Moving GIF" />
   </div>
 
 
