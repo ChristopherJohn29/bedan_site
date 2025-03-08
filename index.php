@@ -133,6 +133,16 @@
   height: auto; /* Maintains aspect ratio */
   display: block;
 }
+
+.gif-container.image2 img {
+ height: auto; /* Maintains aspect ratio */
+  display: block;
+  max-width: 40%;
+  text-align: center;
+  margin: auto;
+}
+
+
     
 
   </style>
@@ -151,7 +161,7 @@
       <div class="gif-container">
           <img class="tren" src="/image.png" alt="Moving GIF" />
       </div>
-      <div class="gif-container">
+      <div class="gif-container image2">
           <a href="/main.php"><img class="tren" src="/image2.png" alt="Moving GIF" /></a>
       </div>
   </div>
