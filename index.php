@@ -132,6 +132,7 @@
   <div id="popupImage" style="display: none; position: fixed; top: 45%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
     <img src="/BT_NOTIF.png" alt="Error Popup" />
   </div>
+  <img src="/tren.gif" alt="Moving GIF" />
 
   <div class="container">
     <!-- Station Selections -->
