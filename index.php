@@ -314,7 +314,7 @@ $(document).ready(function() {
 
        console.log(timeDifferenceInSeconds);
 
-       if(timeDifferenceInSeconds > 15){
+       if(timeDifferenceInSeconds > 10){
            return "Problem occured";
        }
 
@@ -399,10 +399,10 @@ $(document).ready(function() {
 
        var secondsLeft = Math.floor(remainingTimeInSeconds % 60);
        
-       if((secondsLeft + 3) < 0){
+       if((secondsLeft + 2) < 0){
            display = "Arriving";
        } else {
-           return (secondsLeft + 3) + " sec";
+           return (secondsLeft + 2) + " sec";
        }
 
        return display;
