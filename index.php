@@ -124,11 +124,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh; /* Full height */
     }
 
-    img {
-      max-width: 80%;
+    img.tren {
+      max-width: 100%;
       height: auto;
     }
 
@@ -145,7 +144,7 @@
     <img src="/BT_NOTIF.png" alt="Error Popup" />
   </div>
   <div class="gif-container">
-    <img src="/tren.gif" alt="Moving GIF" />
+    <img class="tren" src="/tren.gif" alt="Moving GIF" />
   </div>
 
   <div class="container">
